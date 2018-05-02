@@ -3,18 +3,18 @@ import boto3
 def lambda_handler(event, context):
 
     ec2 = boto3.client('ec2')
-    # Check for EC2(Running)
-    ec2_response = ec2.describe_instances(Filters=[{'Name':'instance-state-name','Values':['running']}] )
-    ec2_count = len(ec2_response['Reservations'])
-    print(ec2_count)
+    messages_running=[]
+    ec2_running_response = ec2.describe_instances(Filters=[{'Name':'instance-state-name','Values':['running']}] )
+    #print(ec2_response)
 
-"""
-    ec2 = boto3.resource('ec2')
-    instance = ec2.Instance(id='i-019a20d3c1aa2b6a6')
-    print(instance)
-    name_tag = [x['Value'] for x in instance.tags if x['Key'] == 'Name']
+    ec2_running_count = len(ec2_running_response['Reservations'])
+    print(ec2_running_count)
 
-
-    name = name_tag[0] if len(name_tag) else ''
-    #print(name)
-"""
+    if ec2_running_count > 0:
+        messages_running.append("EC2 Running !!")
+        for i in range(0, ec2_running_count):
+            running_instance = ec2_running_response['Reservations'][i]['Instances'][0]['Tags'][0]['Value']
+            #print(running_instance)
+            messages_running.insert(1, running_instance)
+            messages_running.append(' ')
+        print(messages_running)
