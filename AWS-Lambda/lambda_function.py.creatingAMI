@@ -1,0 +1,35 @@
+import boto3
+from boto3.session import Session
+
+import time
+from datetime import datetime as dt
+
+region = 'ap-northeast-1'
+instance = ['instance_id']
+
+def lambda_handler(event, context):
+
+    ec2_client = boto3.client('ec2')
+    ec2_client = boto3.resource('ec2')
+
+    ret = execute_ami_backup_task(ec2_clinet, ec2_resource)
+
+    return 0
+
+def execute_ami_backup_task(ec2_client, ec2_resource):
+    response = ec2_client.describe_instances()
+    exec_time = dt.now().strftime('%Y%m%d%H%M%S')
+    result = True
+
+    for ec2_group in response['Reservations']:
+        for instance_info in ec2_group['Instances']:
+            ret = is_target(instance_info)
+            if(ret == False):
+                continue
+
+            ret = create_backup_image(ec2_client, ec2_resource)
+            if not ret:
+                result = False
+                continue
+
+    return result

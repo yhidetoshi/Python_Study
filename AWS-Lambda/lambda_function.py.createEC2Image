@@ -1,0 +1,21 @@
+import boto3
+from boto3.session import Session
+
+import time
+from datetime import datetime as dt
+
+region = 'ap-northeast-1'
+
+
+def lambda_handler(event, context):
+
+    ec2_client = boto3.client('ec2')
+#    ec2_client = boto3.resource('ec2')
+
+    response = ec2_client.create_image(
+        InstanceId = 'i-0ab5fa9a7ba6672fc',
+        Name = 'Ubuntu-dev-yajima-20180504',
+        Description = 'Ubuntu-dev-yajima-20180504',
+        NoReboot = True
+    )
+    print(response)
