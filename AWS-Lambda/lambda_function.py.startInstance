@@ -6,3 +6,4 @@ instance = ['instance_id']
 def lambda_handler(event, context):
 
     ec2 = boto3.client('ec2',region_name=region)
+    ec2.start_instances(InstanceIds=['i-0ab5fa9a7ba6672fc'])
