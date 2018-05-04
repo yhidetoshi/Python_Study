@@ -3,8 +3,7 @@
 #### create_image(**kwargs)の場合
 
 ↓ boto3の公式ドキュメントだが、 Required パラメータは `AWS API Documentation`のリンクを踏んで確認する必要がある,,,
-- Request Parameters
-  - https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateImage.html
+- Request Parametersは `Request Syntax` の下に記載されている
 
 ```
 Creates an Amazon EBS-backed AMI from an Amazon EBS-backed instance that is either running or stopped.
