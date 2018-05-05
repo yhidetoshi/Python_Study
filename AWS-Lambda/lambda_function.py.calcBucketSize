@@ -11,7 +11,7 @@ def lambda_handler(event, context):
     bucketList=[]
     bucketSum = 0
     s3 = boto3.resource('s3')
-    bucket = s3.Bucket('something-bucket-name')
+    bucket = s3.Bucket('cloudfront-ik')
     for object in bucket.objects.all():
         bucketSum += object.size
         #print(object.size)
