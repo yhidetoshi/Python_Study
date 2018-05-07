@@ -18,3 +18,13 @@ print(greeting)
 prices = [100, 1000, 10000]
 paymentList = list(map(lambda price: price * 1.08, prices))
 print(paymentList)
+
+# ex4
+myfunc = lambda x:x ** 2
+print(myfunc(5))
+print(myfunc(7))
+
+# ex5
+l1 = [(7, 2), (3, 4), (5, 5), (10, 3)]
+l2 = sorted(l1, key=lambda x:x[1])
+print(l2)
